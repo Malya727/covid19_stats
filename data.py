@@ -257,5 +257,7 @@ class COVID_stats:
                 result[ans[0].upper()] = dist
 
         response = result[place.upper()]
-
-        return response
+        if response:
+            return response
+        else:
+            return "NOT FOUND"
