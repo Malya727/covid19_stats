@@ -238,3 +238,24 @@ class COVID_stats:
         globaldata_dict = {'data': globaldata_info, 'updates': headlines_list}
 
         return globaldata_dict
+    
+    def districtwisedetails(self,place):
+        URL = 'https://www.karnataka.com/govt/district-wise-covid-19-cases/'
+        page_content = rq.get(URL).content
+        soup = BeautifulSoup(page_content, 'html.parser')
+
+        data = (soup.find(id='info-table').text).split('\n\n')
+        data.pop(0)
+        data.pop(0)
+        data.pop(-1)
+
+        result = {}
+        for d in data:
+            if d:
+                ans = d.split('\n')
+                dist = {"place":ans[0],"confirmed":ans[1],"active":ans[2],"recovered":ans[3],"death":ans[4]}
+                result[ans[0].upper()] = dist
+
+        response = result[place.upper()]
+
+        return response

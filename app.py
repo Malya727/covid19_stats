@@ -91,6 +91,12 @@ def headlines():
   headlines_JSON = headlines.headlines()
   return json.dumps(headlines_JSON,sort_keys=False)
 
+@app.route('/districtdetails/<district>')
+def districtdetails(district):
+  disdetail = COVID_stats()
+  res = disdetail.districtwisedetails(district)
+  return res
+
 
 if __name__ == "__main__":
   app.run()
