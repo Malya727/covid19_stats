@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests as rq
 from helpline_numbers import helpline_numbers
 import datetime
+from flask.json import jsonify
 
 
 class COVID_stats:
@@ -261,3 +262,20 @@ class COVID_stats:
             return response
         else:
             return "NOT FOUND"
+
+    def alldistrictdata(self):
+        URL = 'https://www.karnataka.com/govt/district-wise-covid-19-cases/'
+        page_content = rq.get(URL).content
+        soup = BeautifulSoup(page_content, 'html.parser')
+        data = (soup.find(id='info-table').text).split('\n\n')
+        data.pop(0)
+        data.pop(0)
+        data.pop(-1)
+        result = []
+        for d in data:
+            if d:
+                ans = d.split('\n')
+                dist = {"place":ans[0],"confirmed":ans[1],"active":ans[2],"recovered":ans[3],"death":ans[4]}
+                result.append(dist)
+        return jsonify({"res":result})
+

@@ -97,6 +97,11 @@ def districtdetails(district):
   res = disdetail.districtwisedetails(district)
   return res
 
+@app.route('/alldistrictdetails')
+def alldistrictdata():
+  disdetail = COVID_stats()
+  res = disdetail.alldistrictdata()
+  return res
 
 if __name__ == "__main__":
   app.run()
