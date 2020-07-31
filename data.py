@@ -48,7 +48,20 @@ class COVID_stats:
             class_=
             "field field-name-field-last-total-death field-type-number-integer field-label-above"
         ).text.split('\xa0')[1]
-
+        active_cases = active_cases.split(',')
+        active_cases = ''.join(active_cases)
+        recovered_cases = recovered_cases.split(',')
+        recovered_cases = ''.join(recovered_cases)
+        migrated_cases = migrated_cases.split(',')
+        migrated_cases = ''.join(migrated_cases)
+        death_cases = death_cases.split(',')
+        death_cases = ''.join(death_cases)
+        last_total_active_cases = last_total_active_cases.split(',')
+        last_total_active_cases = ''.join(last_total_active_cases)
+        last_total_death_cases = last_total_death_cases.split(',')
+        last_total_death_cases = ''.join(last_total_death_cases)
+        last_total_recovered_cases = last_total_recovered_cases.split(',')
+        last_total_recovered_cases = ''.join(last_total_recovered_cases)
         country_data = {
             'last_updated':
             last_updated,
