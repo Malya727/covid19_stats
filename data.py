@@ -280,7 +280,7 @@ class COVID_stats:
         URL = 'https://www.karnataka.com/govt/district-wise-covid-19-cases/'
         page_content = rq.get(URL).content
         soup = BeautifulSoup(page_content, 'html.parser')
-        data = (soup.find(id='info-table').text).split('\n\n')
+        data = (soup.find("table",{"class":"info-table"}).text).split('\n\n')
         data.pop(0)
         data.pop(0)
         data.pop(-1)
